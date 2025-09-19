@@ -1,47 +1,101 @@
 Nimap Machine Test - Django REST API
 
-This project is a Django REST API for managing Clients and Projects with JWT authentication. PostgreSQL is used as the database.
+This project is a Django-based REST API for managing Users, Clients, and Projects. It allows registering clients, assigning projects to users, and fetching relevant information. PostgreSQL is used as the database.
 
-How to Use
+Features
 
-Clone the repository:
+User authentication with JWT token
+
+Register, view, update, and delete clients
+
+Create projects and assign them to registered users
+
+Retrieve all projects assigned to the logged-in user
+
+All API endpoints are secured and require authentication
+
+Tech Stack
+
+Python 3.x
+
+Django 5.x
+
+Django REST Framework
+
+PostgreSQL
+
+JWT Authentication
+
+Setup Instructions
+1. Clone the Repository
+
 git clone https://github.com/ranjankumar9564/nimap_machine_test.git
 
-Navigate to the project folder:
 cd nimap_machine_test
 
-Create and activate a virtual environment:
+2. Create Virtual Environment and Install Dependencies
+
 python -m venv venv
 venv\Scripts\activate (Windows)
 source venv/bin/activate (Linux/Mac)
-
-Install dependencies:
 pip install -r requirements.txt
 
-Configure PostgreSQL in settings.py
+3. Configure Database
 
-Run migrations:
+Create a PostgreSQL database
+
+Update settings.py with your database credentials:
+
+DATABASES = {
+'default': {
+'ENGINE': 'django.db.backends.postgresql',
+'NAME': 'your_db_name',
+'USER': 'your_db_user',
+'PASSWORD': 'your_db_password',
+'HOST': 'localhost',
+'PORT': '5432',
+}
+}
+
+4. Run Migrations
+
+python manage.py makemigrations
 python manage.py migrate
 
-Start the server:
+5. Create Superuser
+
+python manage.py createsuperuser
+
+6. Run the Server
+
 python manage.py runserver
+
+The API will be available at http://127.0.0.1:8000/api/
 
 API Endpoints
 
-Get JWT Token: POST /api/token/
+Obtain JWT Token: POST /api/token/
 
-Create Client: POST /api/clients/
+Refresh JWT Token: POST /api/token/refresh/
 
-List Clients: GET /api/clients/
+Clients:
 
-Retrieve/Update/Delete Client: GET/PUT/DELETE /api/clients/{id}/
+List all: GET /api/clients/
 
-Create Project for Client: POST /api/clients/{client_id}/projects/
+Create: POST /api/clients/
 
-List Projects for User: GET /api/projects/
+Retrieve/Update/Delete: GET/PUT/DELETE /api/clients/<id>/
 
-Include JWT token in headers: Authorization: Bearer <token>
+Projects:
 
-GitHub Repository
+Create for a client: POST /api/clients/<client_id>/projects/
 
-https://github.com/ranjankumar9564/nimap_machine_test
+List assigned projects: GET /api/projects/
+
+Notes
+
+Make sure to use registered users when assigning projects
+
+JWT token is required to access all endpoints
+
+Follow the correct JSON structure when sending requests
