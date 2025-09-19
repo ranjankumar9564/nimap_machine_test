@@ -1,23 +1,47 @@
+Nimap Machine Test - Django REST API
 
-# Nimap Machine Test - Django REST API
+This project is a Django REST API for managing Clients and Projects with JWT authentication. PostgreSQL is used as the database.
 
+How to Use
 
-About
+Clone the repository:
+git clone https://github.com/ranjankumar9564/nimap_machine_test.git
 
-This Django REST API project manages Clients and Projects:
+Navigate to the project folder:
+cd nimap_machine_test
 
-Users can create, update, delete clients.
+Create and activate a virtual environment:
+python -m venv venv
+venv\Scripts\activate (Windows)
+source venv/bin/activate (Linux/Mac)
 
-Create projects for clients and assign users.
+Install dependencies:
+pip install -r requirements.txt
 
-View projects assigned to themselves.
+Configure PostgreSQL in settings.py
 
-JWT authentication secures all requests.
+Run migrations:
+python manage.py migrate
 
-Tech Stack
+Start the server:
+python manage.py runserver
 
-Python, Django, Django REST Framework
+API Endpoints
 
-PostgreSQL Database
+Get JWT Token: POST /api/token/
 
-JWT Authentication
+Create Client: POST /api/clients/
+
+List Clients: GET /api/clients/
+
+Retrieve/Update/Delete Client: GET/PUT/DELETE /api/clients/{id}/
+
+Create Project for Client: POST /api/clients/{client_id}/projects/
+
+List Projects for User: GET /api/projects/
+
+Include JWT token in headers: Authorization: Bearer <token>
+
+GitHub Repository
+
+https://github.com/ranjankumar9564/nimap_machine_test
